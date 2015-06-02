@@ -42,7 +42,8 @@
 	</dependencies>
 
 	<build>
-		<pluginManagement>
+	<!-- 方法一 -->
+		<!-- <pluginManagement>
 			<plugins>
 				<plugin>
 					<groupId>net.alchim31.maven</groupId>
@@ -87,6 +88,52 @@
 							<goal>compile</goal>
 						</goals>
 					</execution>
+				</executions>
+			</plugin>
+		</plugins> -->
+		
+		<!-- 方法二 -->
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.scala-tools</groupId>
+					<artifactId>maven-scala-plugin</artifactId>
+					<version>2.15.2</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.scala-tools</groupId>
+				<artifactId>maven-scala-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>compile</id>
+						<goals>
+							<goal>compile</goal>
+						</goals>
+						<phase>compile</phase>
+					</execution>
+
+					<execution>
+						<id>test-compile</id>
+						<goals>
+							<goal>testCompile</goal>
+						</goals>
+						<phase>test-compile</phase>
+					</execution>
+
+					<execution>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>compile</goal>
+						</goals>
+					</execution>
+
 				</executions>
 			</plugin>
 		</plugins>
